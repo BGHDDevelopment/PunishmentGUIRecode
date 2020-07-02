@@ -2,163 +2,100 @@ package net.bghddevelopment.punishmentgui.utils;
 
 import net.bghddevelopment.punishmentgui.PunishGUI;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ConfigFile {
+public class ConfigFile extends YamlConfiguration {
 
-    public static ConfigFile instance;
-    private YamlConfiguration configuration;
-    private String name;
     private File file;
+    private JavaPlugin plugin;
+    private String name;
 
-    public ConfigFile(String name) {
-        instance = this;
+    public ConfigFile(JavaPlugin plugin, String name) {
+        this.file = new File(plugin.getDataFolder(), name);
+        this.plugin = plugin;
         this.name = name;
-        this.file = new File(PunishGUI.getInstance().getDataFolder(), name + ".yml");
+
         if (!this.file.exists()) {
-            PunishGUI.getInstance().saveResource(name + ".yml", false);
+            plugin.saveResource(name, false);
         }
-        this.configuration = YamlConfiguration.loadConfiguration(this.file);
-    }
 
-    public ConfigFile() {
-    }
-
-    public static ConfigFile getInstance() {
-        return ConfigFile.instance;
-    }
-
-    public boolean getBoolean(String path) {
-        return (this.configuration.contains(path)) && (this.configuration.getBoolean(path));
-    }
-
-    public double getDouble(String path) {
-        if (this.configuration.contains(path)) {
-            return this.configuration.getDouble(path);
+        try {
+            this.load(this.file);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
         }
-        return 0.0D;
-    }
-
-    public int getInt(String path) {
-        if (this.configuration.contains(path)) {
-            return this.configuration.getInt(path);
-        }
-        return 0;
-    }
-
-    public int getInt(String path, int def) {
-        if (this.configuration.contains(path)) {
-            return this.configuration.getInt(path);
-        }
-        return def;
-    }
-
-    public String getString(String path) {
-        if (this.configuration.contains(path)) {
-            return ChatColor.translateAlternateColorCodes('&', this.configuration.getString(path));
-        }
-        return null;
-    }
-
-    public String getString2(String path) {
-        if (this.configuration.contains(path)) {
-            return this.configuration.getString(path);
-        }
-        return null;
-    }
-
-    public List<String> getStringList(String path) {
-        if (this.configuration.contains(path)) {
-            ArrayList<String> strings = new ArrayList<String>();
-            for (String string : this.configuration.getStringList(path)) {
-                strings.add(ChatColor.translateAlternateColorCodes('&', string));
-            }
-            return strings;
-        }
-        return null;
     }
 
     public void load() {
-        this.file = new File(PunishGUI.getInstance().getDataFolder(), name + ".yml");
+        this.file = new File(plugin.getDataFolder(), name);
+
         if (!this.file.exists()) {
-            PunishGUI.getInstance().saveResource(name + ".yml", false);
+            plugin.saveResource(name, false);
         }
-        this.configuration = YamlConfiguration.loadConfiguration(this.file);
+        try {
+            this.load(this.file);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 
     public void save() {
         try {
-            this.configuration.save(this.file);
+            this.save(this.file);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public YamlConfiguration getConfiguration() {
-        return this.configuration;
+    @Override
+    public int getInt(String path) {
+        return super.getInt(path, 0);
     }
 
-    public String getName() {
-        return this.name;
+    @Override
+    public double getDouble(String path) {
+        return super.getDouble(path, 0.0);
     }
 
-    public File getFile() {
-        return this.file;
+    @Override
+    public boolean getBoolean(String path) {
+        return super.getBoolean(path, false);
     }
 
-    public void setConfiguration(YamlConfiguration configuration) {
-        this.configuration = configuration;
+    public String getString(String path, boolean check) {
+        return super.getString(path, null);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String getString(String path) {
+        if (super.getString(path) == "") {
+
+        } else {
+            return Color.translate(super.getString(path, "String at path '" + path + "' not found.")).replace("|", "\u2503");
+        }
+        return Color.translate(super.getString(path, "String at path '" + path + "' not found.")).replace("|", "\u2503");
     }
 
-    public void setFile(File file) {
-        this.file = file;
+    @Override
+    public List<String> getStringList(String path) {
+        return super.getStringList(path).stream().map(Color::translate).collect(Collectors.toList());
     }
 
-    public boolean equals(final Object o) {
-        if (o == this) return true;
-        if (!(o instanceof ConfigFile)) return false;
-        final ConfigFile other = (ConfigFile) o;
-        if (!other.canEqual((Object) this)) return false;
-        final Object this$configuration = this.getConfiguration();
-        final Object other$configuration = other.getConfiguration();
-        if (this$configuration == null ? other$configuration != null : !this$configuration.equals(other$configuration))
-            return false;
-        final Object this$name = this.getName();
-        final Object other$name = other.getName();
-        if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
-        final Object this$file = this.getFile();
-        final Object other$file = other.getFile();
-        if (this$file == null ? other$file != null : !this$file.equals(other$file)) return false;
-        return true;
+    public List<String> getStringList(String path, boolean check) {
+        if (!super.contains(path)) return null;
+        return super.getStringList(path).stream().map(Color::translate).collect(Collectors.toList());
     }
 
-    protected boolean canEqual(final Object other) {
-        return other instanceof ConfigFile;
-    }
-
-    public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        final Object $configuration = this.getConfiguration();
-        result = result * PRIME + ($configuration == null ? 43 : $configuration.hashCode());
-        final Object $name = this.getName();
-        result = result * PRIME + ($name == null ? 43 : $name.hashCode());
-        final Object $file = this.getFile();
-        result = result * PRIME + ($file == null ? 43 : $file.hashCode());
-        return result;
-    }
-
-    public String toString() {
-        return "ConfigFile(configuration=" + this.getConfiguration() + ", name=" + this.getName() + ", file=" + this.getFile() + ")";
+    public boolean getOption(String option) {
+        return this.getBoolean("options." + option);
     }
 }
 

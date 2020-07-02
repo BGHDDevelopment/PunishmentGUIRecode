@@ -1,134 +1,56 @@
-#Ban Trails
-banpunishments:
-  rodexplosion:
-    name: "&eRod Explosion Effect"
-    permission: "uhc.cosmetics.rod.explosion"
-    itemname: "TNT"
-    command: ""
-  rodflame:
-    name: "&eRod Flame Effect"
-    permission: "uhc.cosmetics.rod.flame"
-    itemname: "FLINT_AND_STEEL"
-    command: ""
-  rodwater:
-    name: "&eRod Water Effect"
-    permission: "uhc.cosmetics.rod.water"
-    itemname: "WATER_BUCKET"
-    command: ""
-  rodendertrail:
-    name: "&eRod Ender Trail Effect"
-    permission: "uhc.cosmetics.rod.endertrail"
-    itemname: "ENDER_PEARL"
-    command: ""
-  rodhappyvillager:
-    name: "&eRod Happy Villager Effect"
-    permission: "uhc.cosmetics.rod.happyvillager"
-    itemname: "EMERALD"
-    command: ""
-  rodnote:
-    name: "&eRod Note Effect"
-    permission: "uhc.cosmetics.rod.note"
-    itemname: "NOTE_BLOCK"
-    command: ""
-  rodheart:
-    name: "&eRod Heart Effect"
-    permission: "uhc.cosmetics.rod.heart"
-    itemname: "REDSTONE"
-    command: ""
-  roditembreak:
-    name: "&eRod Item Break Effect"
-    permission: "uhc.cosmetics.rod.itembreak"
-    itemname: "CAULDRON_ITEM"
-    command: ""
-  rodmagiccrit:
-    name: "&eRod Magic Critical Effect"
-    permission: "uhc.cosmetics.rod.magiccrit"
-    itemname: "BREWING_STAND_ITEM"
-    command: ""
-  rodcrit:
-    name: "&eRod Critical Effect"
-    permission: "uhc.cosmetics.rod.crit"
-    itemname: "DIAMOND"
-    command: ""
-  rodsmoke:
-    name: "&eRod Smoke Effect"
-    permission: "uhc.cosmetics.rod.smoke"
-    itemname: "APPLE"
-    command: ""
-  rodlavapop:
-    name: "&eRod Lava Pop Effect"
-    permission: "uhc.cosmetics.rod.lavapop"
-    itemname: "LAVA_BUCKET"
-    command: ""
-  rodsplash:
-    name: "&eRod Splash Effect"
-    permission: "uhc.cosmetics.rod.splash"
-    itemname: "SLIME_BALL"
-    command: ""
-#Mute Punishments
-mutepunishments:
-  arrowexplosion:
-    name: "&eArrow Explosion Effect"
-    permission: "uhc.cosmetics.arrow.explosion"
-    itemname: "TNT"
-    command: ""
-  arrowflame:
-    name: "&eArrow Flame Effect"
-    permission: "uhc.cosmetics.arrow.flame"
-    itemname: "FLINT_AND_STEEL"
-    command: ""
-  arrowwater:
-    name: "&eArrow Water Effect"
-    permission: "uhc.cosmetics.arrow.water"
-    itemname: "WATER_BUCKET"
-    command: ""
-  arrowendertrail:
-    name: "&eArrow Ender Trail Effect"
-    permission: "uhc.cosmetics.arrow.endertrail"
-    itemname: "ENDER_PEARL"
-    command: ""
-  arrowhappyvillager:
-    name: "&eArrow Happy Villager Effect"
-    permission: "uhc.cosmetics.arrow.happyvillager"
-    itemname: "EMERALD"
-    command: ""
-  arrownote:
-    name: "&eArrow Note Effect"
-    permission: "uhc.cosmetics.arrow.note"
-    itemname: "NOTE_BLOCK"
-    command: ""
-  arrowheart:
-    name: "&eArrow Heart Effect"
-    permission: "uhc.cosmetics.arrow.heart"
-    itemname: "REDSTONE"
-    command: ""
-  arrowitembreak:
-    name: "&eArrow Item Break Effect"
-    permission: "uhc.cosmetics.arrow.itembreak"
-    itemname: "CAULDRON_ITEM"
-    command: ""
-  arrowmagiccrit:
-    name: "&eArrow Magic Critical Effect"
-    permission: "uhc.cosmetics.arrow.magiccrit"
-    itemname: "BREWING_STAND_ITEM"
-    command: ""
-  arrowcrit:
-    name: "&eArrow Critical Effect"
-    permission: "uhc.cosmetics.arrow.crit"
-    itemname: "DIAMOND"
-    command: ""
-  arrowsmoke:
-    name: "&eArrow Smoke Effect"
-    permission: "uhc.cosmetics.arrow.smoke"
-    itemname: "APPLE"
-    command: ""
-  arrowlavapop:
-    name: "&eArrow Lava Pop Effect"
-    permission: "uhc.cosmetics.arrow.lavapop"
-    itemname: "LAVA_BUCKET"
-    command: ""
-  arrowsplash:
-    name: "&eArrow Splash Effect"
-    permission: "uhc.cosmetics.arrow.splash"
-    itemname: "SLIME_BALL"
-    command: ""
+Command: "{openmenu:main-menu}"
+
+menus:
+  main-menu:
+    #You're using this name to access to this menu from anywhere in the configuration where you have action option
+    #Just use for action {openmenu:menu-name}
+    name: "main-menu"
+    menu-title: "&c&lPunishmentGUI"
+    menu-size: 27
+    fill-menu:
+      enabled: false
+      fill-data: 7
+      material: "STAINED_GLASS_PANE"
+    items:
+      item-1:
+        name: "&e&nFactions&b &7| &cSeason I"
+        material: "TNT"
+        durability: 0
+        slot: 12
+        message:
+          enabled: false
+          text: "&eHello &b<player>!"
+        command:
+          enabled: true
+          #Put command without /
+          execute: "joinqueue factions"
+        action: ""
+        lore:
+          - ""
+          - " &7* &bVersion&7: &31.7.x - 1.14.x"
+          - " &7* &bOnline&7: &3{online-factions}"
+          - " &7* &bStatus&7: &3{status-factions}"
+          - " &7* &bIn-Queue&7: &3{queued-factions}"
+          - ""
+          - "&eClick to join the &b&lFactions &equeue&7."
+      item-2:
+        name: "&e&nUHC&b &7| &cSeason I"
+        material: "GOLDEN_APPLE"
+        durability: 0
+        slot: 16
+        message:
+          enabled: false
+          text: "&eHello &b<player>!"
+        command:
+          enabled: true
+          #Put command without /
+          execute: "joinqueue uhc"
+        action: ""
+        lore:
+          - ""
+          - " &7* &6Version&7: &e1.7.x - 1.8.x"
+          - " &7* &6Online&7: &e{online-uhc}"
+          - " &7* &6Status&7: &e{status-uhc}"
+          - " &7* &6In-Queue&7: &e{queued-uhc}"
+          - ""
+          - "&eClick to join the &6&lUHC &equeue&7."

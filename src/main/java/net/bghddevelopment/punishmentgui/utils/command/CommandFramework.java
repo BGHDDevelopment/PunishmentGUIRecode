@@ -52,17 +52,17 @@ public class CommandFramework implements CommandExecutor {
     }
 
     public void loadCommandsInFile() {
-        ConfigFile file = new ConfigFile("commands");
-        file.getConfiguration().getKeys(false).forEach(key -> {
-            file.getConfiguration().set(key, null);
+        ConfigFile file = new ConfigFile(PunishGUI.getInstance(), "commands.yml");
+        file.getKeys(false).forEach(key -> {
+            file.set(key, null);
         });
         this.commandMap.forEach((key, value) -> {
             Method method = commandMap.get(key).getKey();
             Object methodObject = commandMap.get(key).getValue();
             Command command = method.getAnnotation(Command.class);
 
-            file.getConfiguration().set(command.name() + ".permission", command.permission());
-            file.getConfiguration().set(command.name() + ".aliases", command.aliases().length > 0 ? command.aliases() : new ArrayList<>());
+            file.set(command.name() + ".permission", command.permission());
+            file.set(command.name() + ".aliases", command.aliases().length > 0 ? command.aliases() : new ArrayList<>());
         });
         file.save();
     }
