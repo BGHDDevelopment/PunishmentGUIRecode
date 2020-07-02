@@ -15,19 +15,14 @@ public class PunishCommand extends BaseCommand {
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String menu = plugin.getSettingsFile().getString("Command").replace("{openmenu:", "").replace("}", "").toLowerCase();
-        Bukkit.broadcastMessage("Got Menu From Config");
         CustomMenu customMenu = plugin.getCoreHandler().getCustomMenuData().get(menu);
-        Bukkit.broadcastMessage("Got Menu Data.");
-
         if (menu != null) {
             Tasks.run(plugin, () -> {
                 player.closeInventory();
                 customMenu.getMenu().open(player);
-                Bukkit.broadcastMessage("This should work and open the menu now.");
                 return;
             });
         } else {
-            Bukkit.broadcastMessage("This did not open the menu.");
             Utilities.log("&c[MenuLog-1] &eThere is no menu with name &e&n" + plugin.getSettingsFile().getString("main-menu") + "&b &eto open for &b" + player.getName() + "&e. &c&oPlease check your configurations.");
             return;
         }
