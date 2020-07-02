@@ -1,0 +1,134 @@
+#Ban Trails
+banpunishments:
+  rodexplosion:
+    name: "&eRod Explosion Effect"
+    permission: "uhc.cosmetics.rod.explosion"
+    itemname: "TNT"
+    command: ""
+  rodflame:
+    name: "&eRod Flame Effect"
+    permission: "uhc.cosmetics.rod.flame"
+    itemname: "FLINT_AND_STEEL"
+    command: ""
+  rodwater:
+    name: "&eRod Water Effect"
+    permission: "uhc.cosmetics.rod.water"
+    itemname: "WATER_BUCKET"
+    command: ""
+  rodendertrail:
+    name: "&eRod Ender Trail Effect"
+    permission: "uhc.cosmetics.rod.endertrail"
+    itemname: "ENDER_PEARL"
+    command: ""
+  rodhappyvillager:
+    name: "&eRod Happy Villager Effect"
+    permission: "uhc.cosmetics.rod.happyvillager"
+    itemname: "EMERALD"
+    command: ""
+  rodnote:
+    name: "&eRod Note Effect"
+    permission: "uhc.cosmetics.rod.note"
+    itemname: "NOTE_BLOCK"
+    command: ""
+  rodheart:
+    name: "&eRod Heart Effect"
+    permission: "uhc.cosmetics.rod.heart"
+    itemname: "REDSTONE"
+    command: ""
+  roditembreak:
+    name: "&eRod Item Break Effect"
+    permission: "uhc.cosmetics.rod.itembreak"
+    itemname: "CAULDRON_ITEM"
+    command: ""
+  rodmagiccrit:
+    name: "&eRod Magic Critical Effect"
+    permission: "uhc.cosmetics.rod.magiccrit"
+    itemname: "BREWING_STAND_ITEM"
+    command: ""
+  rodcrit:
+    name: "&eRod Critical Effect"
+    permission: "uhc.cosmetics.rod.crit"
+    itemname: "DIAMOND"
+    command: ""
+  rodsmoke:
+    name: "&eRod Smoke Effect"
+    permission: "uhc.cosmetics.rod.smoke"
+    itemname: "APPLE"
+    command: ""
+  rodlavapop:
+    name: "&eRod Lava Pop Effect"
+    permission: "uhc.cosmetics.rod.lavapop"
+    itemname: "LAVA_BUCKET"
+    command: ""
+  rodsplash:
+    name: "&eRod Splash Effect"
+    permission: "uhc.cosmetics.rod.splash"
+    itemname: "SLIME_BALL"
+    command: ""
+#Mute Punishments
+mutepunishments:
+  arrowexplosion:
+    name: "&eArrow Explosion Effect"
+    permission: "uhc.cosmetics.arrow.explosion"
+    itemname: "TNT"
+    command: ""
+  arrowflame:
+    name: "&eArrow Flame Effect"
+    permission: "uhc.cosmetics.arrow.flame"
+    itemname: "FLINT_AND_STEEL"
+    command: ""
+  arrowwater:
+    name: "&eArrow Water Effect"
+    permission: "uhc.cosmetics.arrow.water"
+    itemname: "WATER_BUCKET"
+    command: ""
+  arrowendertrail:
+    name: "&eArrow Ender Trail Effect"
+    permission: "uhc.cosmetics.arrow.endertrail"
+    itemname: "ENDER_PEARL"
+    command: ""
+  arrowhappyvillager:
+    name: "&eArrow Happy Villager Effect"
+    permission: "uhc.cosmetics.arrow.happyvillager"
+    itemname: "EMERALD"
+    command: ""
+  arrownote:
+    name: "&eArrow Note Effect"
+    permission: "uhc.cosmetics.arrow.note"
+    itemname: "NOTE_BLOCK"
+    command: ""
+  arrowheart:
+    name: "&eArrow Heart Effect"
+    permission: "uhc.cosmetics.arrow.heart"
+    itemname: "REDSTONE"
+    command: ""
+  arrowitembreak:
+    name: "&eArrow Item Break Effect"
+    permission: "uhc.cosmetics.arrow.itembreak"
+    itemname: "CAULDRON_ITEM"
+    command: ""
+  arrowmagiccrit:
+    name: "&eArrow Magic Critical Effect"
+    permission: "uhc.cosmetics.arrow.magiccrit"
+    itemname: "BREWING_STAND_ITEM"
+    command: ""
+  arrowcrit:
+    name: "&eArrow Critical Effect"
+    permission: "uhc.cosmetics.arrow.crit"
+    itemname: "DIAMOND"
+    command: ""
+  arrowsmoke:
+    name: "&eArrow Smoke Effect"
+    permission: "uhc.cosmetics.arrow.smoke"
+    itemname: "APPLE"
+    command: ""
+  arrowlavapop:
+    name: "&eArrow Lava Pop Effect"
+    permission: "uhc.cosmetics.arrow.lavapop"
+    itemname: "LAVA_BUCKET"
+    command: ""
+  arrowsplash:
+    name: "&eArrow Splash Effect"
+    permission: "uhc.cosmetics.arrow.splash"
+    itemname: "SLIME_BALL"
+    command: ""
