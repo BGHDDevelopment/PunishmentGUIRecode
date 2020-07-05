@@ -40,17 +40,9 @@ public final class PunishGUI extends JavaPlugin {
         instance = this;
         this.framework = new CommandFramework(this);
         this.settingsFile = new ConfigFile(this, "settings.yml");
-
-        // 1. Load language.yml file.
         this.languageFile = new ConfigFile(this, "language.yml");
-
-        // 2. Set Language config to loaded language.yml file.
         Language.setConfig(this.languageFile);
-
-        // 3. Load the language from Language Enums.
-        // ?: Is that right? - Think.
         loadLanguage();
-
         Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded config files"));
         RegisterHandler.loadCommandsFromPackage(this, "net.bghddevelopment.punishmentgui.commands");
         RegisterHandler.loadListenersFromPackage(this, "net.bghddevelopment.punishmentgui.listeners");
@@ -87,12 +79,8 @@ public final class PunishGUI extends JavaPlugin {
 
     }
 
-    // TODO: Fix language loading.
     private void loadLanguage() {
-        // ?: So if no language file we don't load anything
-        //    Why not try and regenerate the file - Think.
         if (this.languageFile == null) return;
-        
         Arrays.stream(Language.values()).forEach(language -> {
             if (this.languageFile.getString(language.getPath()) == null) {
                 this.languageFile.set(language.getPath(), language.getValue());
