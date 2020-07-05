@@ -9,6 +9,7 @@ import net.bghddevelopment.punishmentgui.utils.Color;
 import net.bghddevelopment.punishmentgui.utils.ItemBuilder;
 import net.bghddevelopment.punishmentgui.utils.Tasks;
 import net.bghddevelopment.punishmentgui.utils.Utilities;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -82,7 +83,8 @@ public class CustomMenu {
                             }
 
                             if (configItem.isCommandEnabled()) {
-                                player.performCommand(configItem.getCommand().replace("<target>", plugin.getBannedManager().get(player.getUniqueId())));
+                                String command = configItem.getCommand().replace("<target>", plugin.getBannedManager().get(player.getUniqueId()));
+                                player.performCommand(command);
                             }
 
                             if (configItem.isMessageEnabled()) {

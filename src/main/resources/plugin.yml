@@ -2,7 +2,7 @@ name: PunishGUI
 version: ${project.version}
 main: net.bghddevelopment.punishmentgui.PunishGUI
 authors: [BGHDDevelopment]
-soft-depend:
+softdepend:
   - PlaceholderAPI
 description: PunishmentGUI which supports LiteBans, AdvancedBan, and many others
 website: https://bghddevelopment.com
