@@ -84,6 +84,10 @@ public class CommandFramework implements CommandExecutor {
                     sender.sendMessage(ChatColor.RED + "No permission (OPs only)."); // TODO change
                     return true;
                 }
+                if (command.developerOnly() && !sender.getName().equalsIgnoreCase("Thinkverse")) {
+                    sender.sendMessage(ChatColor.RED + "This command is executable by the plugin developer only.");
+                    return true;
+                }
                 if (command.developerOnly() && !sender.getName().equalsIgnoreCase("FaceSlap_")) {
                     sender.sendMessage(ChatColor.RED + "This command is executable by the plugin developer only.");
                     return true;
