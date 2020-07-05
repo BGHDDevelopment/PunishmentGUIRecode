@@ -82,7 +82,7 @@ public class CustomMenu {
                             }
 
                             if (configItem.isCommandEnabled()) {
-                                player.performCommand(configItem.getCommand());
+                                player.performCommand(configItem.getCommand().replace("<target>", plugin.getBannedManager().get(player.getUniqueId())));
                             }
 
                             if (configItem.isMessageEnabled()) {
