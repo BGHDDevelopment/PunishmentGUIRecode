@@ -79,11 +79,12 @@ public final class PunishGUI extends JavaPlugin {
 
     }
 
-
+    // TODO: Fix language loading.
     private void loadLanguage() {
-        if (this.languageFile == null) {
-            return;
-        }
+        // ?: So if no language file we don't load anything
+        //    Why not try and regenerate the file - Think.
+        if (this.languageFile == null) return;
+        
         Arrays.stream(Language.values()).forEach(language -> {
             if (this.languageFile.getString(language.getPath()) == null) {
                 this.languageFile.set(language.getPath(), language.getValue());
