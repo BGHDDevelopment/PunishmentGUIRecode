@@ -84,7 +84,11 @@ public class CustomMenu {
 
                             if (configItem.isCommandEnabled()) {
                                 String command = configItem.getCommand().replace("<target>", plugin.getBannedManager().get(player.getUniqueId()));
-                                player.performCommand(command);
+                                if (plugin.getSettingsFile().getBoolean("ConsoleRunsCommands")) {
+                                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+                                } else {
+                                    player.performCommand(command);
+                                }
                             }
 
                             if (configItem.isMessageEnabled()) {

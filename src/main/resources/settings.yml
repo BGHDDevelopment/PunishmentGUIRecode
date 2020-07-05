@@ -1,4 +1,5 @@
 Command: "{openmenu:main-menu}"
+ConsoleRunsCommands: true
 
 menus:
   main-menu:
