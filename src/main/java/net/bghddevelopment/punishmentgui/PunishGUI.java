@@ -79,11 +79,8 @@ public final class PunishGUI extends JavaPlugin {
 
     }
 
-
     private void loadLanguage() {
-        if (this.languageFile == null) {
-            return;
-        }
+        if (this.languageFile == null) return;
         Arrays.stream(Language.values()).forEach(language -> {
             if (this.languageFile.getString(language.getPath()) == null) {
                 this.languageFile.set(language.getPath(), language.getValue());

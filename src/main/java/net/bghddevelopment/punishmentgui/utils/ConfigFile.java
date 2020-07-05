@@ -76,12 +76,11 @@ public class ConfigFile extends YamlConfiguration {
 
     @Override
     public String getString(String path) {
-        if (super.getString(path) == "") {
-
-        } else {
-            return Color.translate(super.getString(path, "String at path '" + path + "' not found.")).replace("|", "\u2503");
+        if (super.contains(path)) {
+            return ChatColor.translateAlternateColorCodes('&', super.getString(path, "String at path '" + path + "' not found.")).replace("|", "\u2503");
         }
-        return Color.translate(super.getString(path, "String at path '" + path + "' not found.")).replace("|", "\u2503");
+
+        return null;
     }
 
     @Override
