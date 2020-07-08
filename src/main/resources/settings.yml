@@ -2,6 +2,8 @@
 Command: "{openmenu:main-menu}"
 #Should the console run the punishment command?
 ConsoleRunsCommands: false
+#Toggle update checks
+CheckForUpdates: true
 #Menus
 menus:
   #main-menu is the default menu, to create more just copy and paste the same format.
@@ -68,7 +70,7 @@ menus:
           - '&7Verbal Abuse, Spam, Harassment, Trolling, etc'
           - ""
       WarningItem:
-        name: "&a&lChat Offenses"
+        name: "&a&lWarnings"
         material: "ANVIL"
         durability: 0
         slot: 43

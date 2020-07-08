@@ -10,6 +10,7 @@ import net.bghddevelopment.punishmentgui.utils.command.CommandFramework;
 import net.bghddevelopment.punishmentgui.utils.registration.RegisterHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -43,12 +44,32 @@ public final class PunishGUI extends JavaPlugin {
         this.languageFile = new ConfigFile(this, "language.yml");
         Language.setConfig(this.languageFile);
         loadLanguage();
-        Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded config files"));
+        Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded config files!"));
         RegisterHandler.loadCommandsFromPackage(this, "net.bghddevelopment.punishmentgui.commands");
         RegisterHandler.loadListenersFromPackage(this, "net.bghddevelopment.punishmentgui.listeners");
+        Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded commands and permissions!"));
         loadHandlers();
         this.framework.loadCommandsInFile();
         this.coreHandler.setupCustomMenuData();
+        Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded menus!"));
+        Metrics metrics = new Metrics(this, 5694);
+        Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded metrics!"));
+        if (getSettingsFile().getBoolean("CheckForUpdates")) {
+            new UpdateChecker(this, 52072).getLatestVersion(version -> {
+                if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                    Bukkit.getConsoleSender().sendMessage(Color.translate("&aPunishmentGUI is up to date!"));
+                } else {
+                    PluginDescriptionFile pdf = this.getDescription();
+                    Bukkit.getConsoleSender().sendMessage(Color.translate("&7*********************************************************************"));
+                    Bukkit.getConsoleSender().sendMessage(Color.translate("&cPunishmentGUI is outdated!"));
+                    Bukkit.getConsoleSender().sendMessage(Color.translate("Newest version: &e" + version));
+                    Bukkit.getConsoleSender().sendMessage(Color.translate("Your version: &c" + pdf.getVersion()));
+                    Bukkit.getConsoleSender().sendMessage(Color.translate("Please Update Here: https://www.spigotmc.org/resources/52072/"));
+                    Bukkit.getConsoleSender().sendMessage(Color.translate("&7*********************************************************************"));
+                }
+            });
+        }
+        Bukkit.getConsoleSender().sendMessage(Color.translate("&aPunishmentGUI Loaded!"));
     }
 
     @Override

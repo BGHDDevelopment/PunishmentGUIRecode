@@ -6,7 +6,7 @@
 
     <groupId>net.bghddevelopment.punishmentgui</groupId>
     <artifactId>PunishGUI</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>PunishGUI</name>
