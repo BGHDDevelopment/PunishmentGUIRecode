@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 public class PunishCommand extends BaseCommand {
 
 
-    @Command(name = "punish", aliases = "p")
+    @Command(name = "punish", aliases = "p", permission = "punish.use")
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();
