@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class PunishReloadCommand extends BaseCommand {
 
-    @Command(name = "punishreload", aliases = "preload")
+    @Command(name = "punishreload", aliases = "preload", permission = "punish.admin")
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         plugin.getSettingsFile().load();
