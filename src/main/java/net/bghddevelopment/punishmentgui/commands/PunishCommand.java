@@ -18,6 +18,9 @@ public class PunishCommand extends BaseCommand {
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
         String[] args = command.getArgs();
+        if (!player.hasPermission("punish.use")) {
+            return;
+        }
         if (args.length == 0 || args.length > 2) {
             player.sendMessage(plugin.getPlaceholderAPI().translate(player, Language.PUNISH_USAGE.toString()));
             return;

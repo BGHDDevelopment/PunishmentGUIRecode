@@ -11,6 +11,9 @@ public class PunishReloadCommand extends BaseCommand {
     @Command(name = "punishreload", aliases = "preload", permission = "punish.admin")
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
+        if (!player.hasPermission("punish.admin")) {
+            return;
+        }
         plugin.getSettingsFile().load();
         plugin.getLanguageFile().load();
         plugin.getCoreHandler().setupCustomMenuData();
