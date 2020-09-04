@@ -94,7 +94,7 @@ public class CustomMenu {
                             if (configItem.isMessageEnabled()) {
                                 player.sendMessage(plugin.getCoreHandler().translate(player,
                                         Color.translate(configItem.getMessage()
-                                                .replace("<player>", player.getName()))));
+                                                .replace("{player}", player.getName()))));
                             }
                         }
                     });

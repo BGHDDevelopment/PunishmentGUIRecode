@@ -12,7 +12,7 @@ menus:
     #Just use for action {openmenu:menu-name}
     name: "main-menu"
     menu-title: "&c&lPunishmentGUI"
-    menu-size: 53
+    menu-size: 54
     fill-menu:
       enabled: true
       fill-data: 15
@@ -25,7 +25,7 @@ menus:
         slot: 14
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: false
           #Put command without /
@@ -42,7 +42,7 @@ menus:
         slot: 12
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: false
           #Put command without /
@@ -59,7 +59,7 @@ menus:
         slot: 10
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: false
           #Put command without /
@@ -76,7 +76,7 @@ menus:
         slot: 43
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -96,7 +96,7 @@ menus:
         slot: 25
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -118,7 +118,7 @@ menus:
         slot: 19
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -146,7 +146,7 @@ menus:
         slot: 28
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -175,7 +175,7 @@ menus:
         slot: 37
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -198,7 +198,7 @@ menus:
         slot: 34
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -217,7 +217,7 @@ menus:
         slot: 21
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -242,7 +242,7 @@ menus:
         slot: 23
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -262,7 +262,7 @@ menus:
         slot: 32
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -285,7 +285,7 @@ menus:
         slot: 41
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -309,7 +309,7 @@ menus:
         slot: 7
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /
@@ -327,7 +327,7 @@ menus:
         slot: 7
         message:
           enabled: false
-          text: "&eHello &b<player>!"
+          text: "&eHello &b{player}!"
         command:
           enabled: true
           #Put command without /

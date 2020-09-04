@@ -1,5 +1,5 @@
 name: PunishGUI
-version: 1.0.2
+version: 1.0.3
 main: net.bghddevelopment.punishmentgui.PunishGUI
 authors: [BGHDDevelopment]
 softdepend:
