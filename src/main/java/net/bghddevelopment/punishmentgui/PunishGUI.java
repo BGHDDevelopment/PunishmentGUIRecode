@@ -7,8 +7,10 @@ import net.bghddevelopment.punishmentgui.menu.handler.CoreHandler;
 import net.bghddevelopment.punishmentgui.menu.menu.AquaMenu;
 import net.bghddevelopment.punishmentgui.utils.*;
 import net.bghddevelopment.punishmentgui.utils.command.CommandFramework;
+import net.bghddevelopment.punishmentgui.utils.glow.Glow;
 import net.bghddevelopment.punishmentgui.utils.registration.RegisterHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,19 +19,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 public final class PunishGUI extends JavaPlugin {
 
     @Getter
     public static PunishGUI instance;
     private ConfigFile settingsFile, languageFile;
     private CommandFramework framework;
-    @Getter
     private CoreHandler coreHandler;
-    @Getter
     private MenuManager menuManager;
     private List<Listener> listeners = new ArrayList<>();
     private BannedManager bannedPlayersManager = BannedManager.getManager();
     private PlaceholderAPI placeholderAPI;
+    private Glow glow;
 
     public static PunishGUI getInstance() {
         return PunishGUI.instance;
@@ -51,6 +53,11 @@ public final class PunishGUI extends JavaPlugin {
         loadHandlers();
         this.framework.loadCommandsInFile();
         this.coreHandler.setupCustomMenuData();
+        if(Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
+            this.glow = new Glow(NamespacedKey.minecraft("glow"));
+            this.glow.register();
+            Utilities.log("&eEnabled 1.13+ glow.");
+        }
         Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded menus!"));
         Metrics metrics = new Metrics(this, 5694);
         Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded metrics!"));
@@ -70,6 +77,7 @@ public final class PunishGUI extends JavaPlugin {
             });
         }
         Bukkit.getConsoleSender().sendMessage(Color.translate("&aPunishmentGUI Loaded!"));
+        Bukkit.getScheduler().runTaskTimerAsynchronously(this, new MenuUpdate(), 20L, 20L);
     }
 
     @Override
@@ -77,27 +85,10 @@ public final class PunishGUI extends JavaPlugin {
         getBannedManager().clear();
     }
 
-    public CommandFramework getFramework() {
-        return this.framework;
-    }
-    public List<Listener> getListeners() {
-        return this.listeners;
-    }
-    public ConfigFile getSettingsFile() {
-        return this.settingsFile;
-    }
-    public ConfigFile getLanguageFile() {
-        return this.languageFile;
-    }
-    public PlaceholderAPI getPlaceholderAPI() {
-        return this.placeholderAPI;
-    }
-
     private void loadHandlers() {
         this.menuManager = new MenuManager(this);
         this.coreHandler = new CoreHandler(this);
         this.placeholderAPI = new PlaceholderAPI(this);
-
     }
 
     private void loadLanguage() {

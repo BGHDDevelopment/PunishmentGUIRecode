@@ -2,12 +2,17 @@ package net.bghddevelopment.punishmentgui.menu.handler;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.bghddevelopment.punishmentgui.PunishGUI;
 import net.bghddevelopment.punishmentgui.utils.Color;
 import net.bghddevelopment.punishmentgui.utils.ConfigFile;
 import net.bghddevelopment.punishmentgui.utils.ItemBuilder;
 import net.bghddevelopment.punishmentgui.utils.Utilities;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +85,18 @@ public class ConfigItem {
 
     public ItemStack toItemStack() {
         ItemBuilder item = new ItemBuilder(this.material);
+        if (glow) {
+            if (Bukkit.getVersion().contains("1.7")) {
+                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+            } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
+                item.addEnchant(PunishGUI.getInstance().getGlow(), 1);
+            } else {
+                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+                ItemMeta itemMeta = item.toItemStack().getItemMeta();
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                item.toItemStack().setItemMeta(itemMeta);
+            }
+        }
         item.setName(this.name);
         item.setLore(this.lore);
         item.setDurability(this.durability);

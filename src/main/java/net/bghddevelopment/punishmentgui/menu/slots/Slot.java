@@ -27,7 +27,7 @@ public abstract class Slot {
                 if (isGlassAvailable()) {
                     return new ItemBuilder(Material.valueOf("STAINED_GLASS_PANE")).setDurability(7).toItemStack();
                 }
-                return new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability(7).toItemStack();
+                return new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDurability(7).toItemStack();
             }
 
             @Override

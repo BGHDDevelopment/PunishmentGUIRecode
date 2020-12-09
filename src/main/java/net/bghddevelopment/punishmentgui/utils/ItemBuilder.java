@@ -6,7 +6,6 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.ArrayList;
@@ -123,7 +122,7 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder setOwner(String owner) {
+/*    public ItemBuilder setOwner(String owner) {
         if (this.is.getType() == Material.SKULL_ITEM) {
             SkullMeta meta = (SkullMeta) this.is.getItemMeta();
             meta.setOwner(owner);
@@ -131,7 +130,7 @@ public class ItemBuilder {
             return this;
         }
         throw new IllegalArgumentException("setOwner() only applicable for Skull Item");
-    }
+    }*/
 
     public ItemBuilder setInfinityDurability() {
         is.setDurability(Short.MAX_VALUE);
@@ -211,13 +210,13 @@ public class ItemBuilder {
         return this;
     }
 
-    @Deprecated
+/*    @Deprecated
     public ItemBuilder setWoolColor(DyeColor color) {
         if (!is.getType().equals(Material.WOOL))
             return this;
         this.is.setDurability(color.getData());
         return this;
-    }
+    }*/
 
     public ItemStack toItemStack() {
         return is;
