@@ -1,6 +1,5 @@
 package net.bghddevelopment.punishmentgui.utils;
 
-import net.bghddevelopment.punishmentgui.PunishGUI;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -8,7 +7,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
