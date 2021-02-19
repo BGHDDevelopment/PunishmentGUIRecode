@@ -32,7 +32,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -81,7 +81,7 @@
             <artifactId>spigot-1-7</artifactId>
             <version>1.7.10</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot17.jar</systemPath>
+            <systemPath>${project.basedir}/lib/paper-1.7.10.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>
