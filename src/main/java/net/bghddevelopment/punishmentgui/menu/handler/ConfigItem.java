@@ -22,7 +22,12 @@ public class ConfigItem {
     private ConfigFile configuration;
     private String path;
 
-    private String name, action, command, gadgetName, itemKey, skullOwner;
+    private String name;
+    private String action;
+    private List<String> command;
+    private String gadgetName;
+    private String itemKey;
+    private String skullOwner;
     private Material material;
     private int durability, slot;
     private List<String> lore;
@@ -48,7 +53,7 @@ public class ConfigItem {
         this.slot = this.configuration.getInt(this.path + ".slot") - 1;
         this.action = this.configuration.getString(this.path + ".action");
         this.glow = this.configuration.getBoolean(this.path + ".glow");
-        this.command = this.configuration.getString(this.path + ".command.execute");
+        this.command = this.configuration.getStringList(this.path + ".command.execute");
         this.commandEnabled = this.configuration.getBoolean(this.path + ".command.enabled");
         this.message = this.configuration.getString(this.path + ".message.text");
         this.messageEnabled = this.configuration.getBoolean(this.path + ".message.enabled");

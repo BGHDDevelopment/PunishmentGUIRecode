@@ -29,7 +29,8 @@ menus:
         command:
           enabled: false
           #Put command without /
-          execute: ""
+          execute:
+            - ""
         action: ""
         lore:
           - ""
@@ -46,7 +47,8 @@ menus:
         command:
           enabled: false
           #Put command without /
-          execute: ""
+          execute:
+            - ""
         action: ""
         lore:
           - ""
@@ -63,7 +65,8 @@ menus:
         command:
           enabled: false
           #Put command without /
-          execute: ""
+          execute:
+            - ""
         action: ""
         lore:
           - ""
@@ -80,7 +83,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "warn {target} Spam/Hack Accusation/Trolling -s"
+          execute:
+            - "warn {target} Spam/Hack Accusation/Trolling -s"
         action: ""
         lore:
           - ' '
@@ -100,7 +104,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "mute {target} Severe Advertising/Other Severe Offense -s"
+          execute:
+            - "mute {target} Severe Advertising/Other Severe Offense -s"
         action: ""
         lore:
           - '&fMute Duration: &ePermanent'
@@ -122,7 +127,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "mute {target} 1h Light Spam/Light Advertising/Light Abuse-Harassment/Hackusations -s"
+          execute:
+            - "mute {target} 1h Light Spam/Light Advertising/Light Abuse-Harassment/Hackusations -s"
         action: ""
         lore:
           - '&fMute Duration: &e1 Hour'
@@ -150,7 +156,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "mute {target} 1w Medium Spam/Medium Advertising/Medium Abuse-Harassment/Avoiding Chat Filter"
+          execute:
+            - "mute {target} 1w Medium Spam/Medium Advertising/Medium Abuse-Harassment/Avoiding Chat Filter"
         action: ""
         lore:
           - '&fMute Duration: &e1 Week'
@@ -179,7 +186,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "mute {target} 1m Severe Spam/Severe Abuse-Harassment -s"
+          execute:
+            - "mute {target} 1m Severe Spam/Severe Abuse-Harassment -s"
         action: ""
         lore:
           - '&fMute Duration: &e1 Month'
@@ -202,7 +210,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "ban {target} Severe Threats -s"
+          execute:
+            - "ban {target} Severe Threats -s"
         action: ""
         lore:
           - '&fBan Duration: &ePermanent'
@@ -221,7 +230,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "ban {target} 1h Team Killing/Trolling(Gameplay)/Map-Bug Exploiting -s"
+          execute:
+            - "ban {target} 1h Team Killing/Trolling(Gameplay)/Map-Bug Exploiting -s"
         action: ""
         lore:
           - '&fBan Duration: &e1 Hour'
@@ -246,7 +256,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "ban {target} 1d Damage Indicators/Player Radar -s"
+          execute:
+            - "ban {target} 1d Damage Indicators/Player Radar -s"
         action: ""
         lore:
           - '&fBan Duration: &e1 Day'
@@ -266,7 +277,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "ban {target} 1w Forcefield/Speed Hack/Reach Hack/Other Hack (First Offense) -s"
+          execute:
+            - "ban {target} 1w Forcefield/Speed Hack/Reach Hack/Other Hack (First Offense) -s"
         action: ""
         lore:
           - '&fBan Duration: &e1 Week'
@@ -289,7 +301,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "ban {target} 1m Forcefield/Speed Hack/Reach Hack/Fly Hack/Other Hack (Second Offence) -s"
+          execute:
+            - "ban {target} 1m Forcefield/Speed Hack/Reach Hack/Fly Hack/Other Hack (Second Offence) -s"
         action: ""
         lore:
           - '&fBan Duration: &e1 Month'
@@ -313,7 +326,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "ipmute {target} IPMUTE -s"
+          execute:
+            - "ipmute {target} IPMUTE -s"
         action: ""
         lore:
           - ' '
@@ -331,7 +345,8 @@ menus:
         command:
           enabled: true
           #Put command without /
-          execute: "ipban {target} IPBAN -s"
+          execute:
+            - "ipban {target} IPBAN -s"
         action: ""
         lore:
           - ' '
