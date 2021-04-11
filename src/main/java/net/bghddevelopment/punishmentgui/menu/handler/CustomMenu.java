@@ -89,7 +89,7 @@ public class CustomMenu {
                                     }
                                 } else {
                                     for (String s : configItem.getCommand()) {
-                                        player.performCommand(s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId())));
+                                        player.performCommand(s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId())).replace("{player}", player.getName()));
                                     }
                                 }
                             }
