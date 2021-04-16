@@ -85,11 +85,20 @@ public class CustomMenu {
                             if (configItem.isCommandEnabled()) {
                                 if (plugin.getSettingsFile().getBoolean("ConsoleRunsCommands")) {
                                     for (String s : configItem.getCommand()) {
-                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId())));
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
+                                                .replace("{player}", Bukkit.getConsoleSender().getName())
+                                                .replace("[Console]", ""));
                                     }
                                 } else {
                                     for (String s : configItem.getCommand()) {
-                                        player.performCommand(s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId())).replace("{player}", player.getName()));
+                                        if (s.contains("[Console]")) {
+                                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
+                                                    .replace("{player}", Bukkit.getConsoleSender().getName())
+                                                    .replace("[Console]", ""));
+                                        } else {
+                                            player.performCommand(s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
+                                                    .replace("{player}", player.getName()));
+                                        }
                                     }
                                 }
                             }
