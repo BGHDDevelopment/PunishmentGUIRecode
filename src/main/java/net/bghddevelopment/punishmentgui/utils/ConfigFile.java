@@ -1,5 +1,6 @@
 package net.bghddevelopment.punishmentgui.utils;
 
+import net.bghddevelopment.punishmentgui.language.Language;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -94,5 +95,6 @@ public class ConfigFile extends YamlConfiguration {
     public boolean getOption(String option) {
         return this.getBoolean("options." + option);
     }
+
 }
 
