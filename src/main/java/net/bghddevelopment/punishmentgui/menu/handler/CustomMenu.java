@@ -10,13 +10,16 @@ import net.bghddevelopment.punishmentgui.utils.ItemBuilder;
 import net.bghddevelopment.punishmentgui.utils.Tasks;
 import net.bghddevelopment.punishmentgui.utils.Utilities;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter
@@ -47,14 +50,19 @@ public class CustomMenu {
                         @Override
                         public ItemStack getItem(Player player) {
                             List<String> lore = configItem.getLore();
+                            List<String> lore_new = new ArrayList<>();
                             String name = configItem.getName();
 
-                            configItem.setName(plugin.getCoreHandler().translate(player, configItem.getName()));
-                            configItem.setLore(plugin.getCoreHandler().translate(player, configItem.getLore()));
+
+                            configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName())));
+                            for (String s : lore) {
+                                lore_new.add(plugin.getCoreHandler().translate(player, s.replace("{player}", player.getName())
+                                        .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))));
+                            }
 
                             ItemStack item = configItem.toItemStack();
 
-                            configItem.setLore(lore);
+                            configItem.setLore(lore_new);
                             configItem.setName(name);
 
                             return item;
