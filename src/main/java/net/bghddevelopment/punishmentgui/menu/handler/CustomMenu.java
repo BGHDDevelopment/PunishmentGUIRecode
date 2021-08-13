@@ -10,6 +10,7 @@ import net.bghddevelopment.punishmentgui.utils.ItemBuilder;
 import net.bghddevelopment.punishmentgui.utils.Tasks;
 import net.bghddevelopment.punishmentgui.utils.Utilities;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
