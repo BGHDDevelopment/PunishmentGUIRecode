@@ -10,16 +10,13 @@ import net.bghddevelopment.punishmentgui.utils.ItemBuilder;
 import net.bghddevelopment.punishmentgui.utils.Tasks;
 import net.bghddevelopment.punishmentgui.utils.Utilities;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter
@@ -160,7 +157,11 @@ public class CustomMenu {
 
             @Override
             public String getName(Player player) {
-                return title;
+                if (title.length() <= 32) {
+                    return title.replace("{player}", player.getName()).replace("{target}", plugin.getBannedManager().get(player.getUniqueId()));
+                } else
+                    // Cut off the player name if the title is greater than 32 characters
+                    return title.replace("{player}", "").replace("{target}", "");
             }
         };
     }
