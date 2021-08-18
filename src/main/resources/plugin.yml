@@ -1,9 +1,10 @@
 name: PunishGUI
-version: 1.0.5
+version: 1.0.7
 main: net.bghddevelopment.punishmentgui.PunishGUI
-authors: [BGHDDevelopment]
+authors: [BGHDDevelopment LLC]
 softdepend:
   - PlaceholderAPI
+  - HeadDatabase
 description: PunishmentGUI which supports LiteBans, AdvancedBan, and many others.
 website: https://bghddevelopment.com
 

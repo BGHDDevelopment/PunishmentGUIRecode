@@ -2,6 +2,7 @@ package net.bghddevelopment.punishmentgui.menu.handler;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import net.bghddevelopment.punishmentgui.PunishGUI;
 import net.bghddevelopment.punishmentgui.utils.ConfigFile;
 import net.bghddevelopment.punishmentgui.utils.ItemBuilder;
@@ -31,7 +32,7 @@ public class ConfigItem {
     private Material material;
     private int durability, slot;
     private List<String> lore;
-    private boolean commandEnabled, closeMenu;
+    private boolean commandEnabled, closeMenu, headDatabase;
     private boolean glow = false;
     private String message;
     private boolean messageEnabled;
@@ -48,6 +49,11 @@ public class ConfigItem {
         this.name = this.configuration.getString(this.path + ".name");
         this.material = Utilities.getMaterial(this.configuration.getString(this.path + ".material"));
         this.durability = this.configuration.getInt(this.path + ".durability");
+        if (this.configuration.contains(this.path + ".head-database")) {
+            this.headDatabase = this.configuration.getBoolean(this.path + ".head-database", false);
+        } else {
+            this.headDatabase = false;
+        }
         this.skullOwner = this.configuration.getString(this.path + ".skullOwner");
         this.lore = this.configuration.getStringList(this.path + ".lore");
         this.slot = this.configuration.getInt(this.path + ".slot") - 1;
@@ -63,25 +69,44 @@ public class ConfigItem {
             this.closeMenu = true;
         }
     }
-
     public ItemStack toItemStack() {
-        ItemBuilder item = new ItemBuilder(this.material);
-        if (glow) {
-            if (Bukkit.getVersion().contains("1.7")) {
-                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-            } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
-                item.addEnchant(PunishGUI.getInstance().getGlow(), 1);
-            } else {
-                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                ItemMeta itemMeta = item.toItemStack().getItemMeta();
-                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                item.toItemStack().setItemMeta(itemMeta);
+        if (headDatabase) {
+            HeadDatabaseAPI api = new HeadDatabaseAPI();
+            ItemBuilder item = new ItemBuilder(api.getItemHead(this.skullOwner));
+            if (glow) {
+                if (Bukkit.getVersion().contains("1.7")) {
+                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+                } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
+                    item.addEnchant(PunishGUI.getInstance().getGlow(), 1);
+                } else {
+                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+                    ItemMeta itemMeta = item.toItemStack().getItemMeta();
+                    itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    item.toItemStack().setItemMeta(itemMeta);
+                }
             }
+            item.setName(this.name);
+            item.setLore(this.lore);
+            return item.toItemStack();
+        } else {
+            ItemBuilder item = new ItemBuilder(this.material);
+            if (glow) {
+                if (Bukkit.getVersion().contains("1.7")) {
+                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+                } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
+                    item.addEnchant(PunishGUI.getInstance().getGlow(), 1);
+                } else {
+                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+                    ItemMeta itemMeta = item.toItemStack().getItemMeta();
+                    itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    item.toItemStack().setItemMeta(itemMeta);
+                }
+            }
+            item.setName(this.name);
+            item.setLore(this.lore);
+            item.setDurability(this.durability);
+            item.setSkullOwner(this.skullOwner);
+            return item.toItemStack();
         }
-        item.setName(this.name);
-        item.setLore(this.lore);
-        item.setDurability(this.durability);
-        item.setSkullOwner(this.skullOwner);
-        return item.toItemStack();
     }
 }

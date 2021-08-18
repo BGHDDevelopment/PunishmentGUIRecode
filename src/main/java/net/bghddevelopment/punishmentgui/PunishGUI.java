@@ -59,7 +59,7 @@ public final class PunishGUI extends JavaPlugin {
             Utilities.log("&eEnabled 1.13+ glow.");
         }
         Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded menus!"));
-        Metrics metrics = new Metrics(this, 5694);
+        new Metrics(this, 5694);
         Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded metrics!"));
         if (getSettingsFile().getBoolean("CheckForUpdates")) {
             new UpdateChecker(this, 52072).getLatestVersion(version -> {
