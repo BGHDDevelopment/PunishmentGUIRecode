@@ -6,7 +6,7 @@ This menu system is in use on [FateHubCore](https://www.mc-market.org/resources/
 
 **Issue Reporting/Support**
 
-While you may report issues via the "Issues" tab I recommend brining them up on our [Discord](https://bghddevelopment.com/discord) as it will be a faster response.
+While you may report issues via the "Issues" tab I recommend putting them on our [Discord](https://bghddevelopment.com/discord) as it will be a faster response.
 
 **Suggestions**
 
