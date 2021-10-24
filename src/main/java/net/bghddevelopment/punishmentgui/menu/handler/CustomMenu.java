@@ -52,7 +52,8 @@ public class CustomMenu {
                             String name = configItem.getName();
 
 
-                            configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName())));
+                            configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName()
+                                    .replace("{player}", plugin.getBannedManager().get(player.getUniqueId())))));
                             for (String s : lore) {
                                 lore_new.add(plugin.getCoreHandler().translate(player, s.replace("{player}", player.getName())
                                         .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))));
