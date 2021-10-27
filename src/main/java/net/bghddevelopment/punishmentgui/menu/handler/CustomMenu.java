@@ -53,9 +53,11 @@ public class CustomMenu {
 
 
                             configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName()
+                                    .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
                                     .replace("{player}", plugin.getBannedManager().get(player.getUniqueId())))));
                             for (String s : lore) {
-                                lore_new.add(plugin.getCoreHandler().translate(player, s.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))));
+                                lore_new.add(plugin.getCoreHandler().translate(player, s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
+                                        .replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))));
                             }
 
                             ItemStack item = configItem.toItemStack();
@@ -92,15 +94,18 @@ public class CustomMenu {
                                 if (plugin.getSettingsFile().getBoolean("ConsoleRunsCommands")) {
                                     for (String s : configItem.getCommand()) {
                                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
+                                                .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
                                                 .replace("[Console]", ""));
                                     }
                                 } else {
                                     for (String s : configItem.getCommand()) {
                                         if (s.contains("[Console]")) {
                                             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
+                                                    .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
                                                     .replace("[Console]", ""));
                                         } else {
-                                            player.performCommand(s.replace("{player}", plugin.getBannedManager().get(player.getUniqueId())));
+                                            player.performCommand(s.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
+                                                    .replace("{target}", plugin.getBannedManager().get(player.getUniqueId())));
                                         }
                                     }
                                 }
@@ -156,10 +161,11 @@ public class CustomMenu {
             @Override
             public String getName(Player player) {
                 if (title.length() <= 32) {
-                    return title.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()));
+                    return title.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
+                            .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()));
                 } else
                     // Cut off the player name if the title is greater than 32 characters
-                    return title.replace("{player}", "");
+                    return title.replace("{player}", "").replace("{target}", "");
             }
         };
     }
