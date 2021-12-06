@@ -39,7 +39,6 @@ public final class PunishGUI extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         instance = this;
         this.framework = new CommandFramework(this);
         this.settingsFile = new ConfigFile(this, "settings.yml");
@@ -56,7 +55,7 @@ public final class PunishGUI extends JavaPlugin {
         if(Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
             this.glow = new Glow(NamespacedKey.minecraft("glow"));
             this.glow.register();
-            Utilities.log("&eEnabled 1.13+ glow.");
+            Utilities.log("&eEnabled glow for Spigot 1.13+");
         }
         Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded menus!"));
         new Metrics(this, 5694);
@@ -71,7 +70,7 @@ public final class PunishGUI extends JavaPlugin {
                     Bukkit.getConsoleSender().sendMessage(Color.translate("&cPunishmentGUI is outdated!"));
                     Bukkit.getConsoleSender().sendMessage(Color.translate("Newest version: &e" + version));
                     Bukkit.getConsoleSender().sendMessage(Color.translate("Your version: &c" + pdf.getVersion()));
-                    Bukkit.getConsoleSender().sendMessage(Color.translate("Please Update Here: https://www.spigotmc.org/resources/52072/"));
+                    Bukkit.getConsoleSender().sendMessage(Color.translate("Please Update Here: https://www.spigotmc.org/resources/52072"));
                     Bukkit.getConsoleSender().sendMessage(Color.translate("&7*********************************************************************"));
                 }
             });
