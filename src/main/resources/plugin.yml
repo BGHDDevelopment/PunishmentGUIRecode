@@ -2,6 +2,7 @@ name: PunishGUI
 version: 1.0.9
 main: net.bghddevelopment.punishmentgui.PunishGUI
 authors: [BGHDDevelopment LLC]
+api-version: "1.13"
 softdepend:
   - PlaceholderAPI
   - HeadDatabase
