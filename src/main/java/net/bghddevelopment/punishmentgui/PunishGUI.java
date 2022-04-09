@@ -1,5 +1,7 @@
 package net.bghddevelopment.punishmentgui;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import lombok.Getter;
 import net.bghddevelopment.punishmentgui.language.Language;
 import net.bghddevelopment.punishmentgui.menu.MenuManager;
@@ -11,10 +13,15 @@ import net.bghddevelopment.punishmentgui.utils.glow.Glow;
 import net.bghddevelopment.punishmentgui.utils.registration.RegisterHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -61,19 +68,7 @@ public final class PunishGUI extends JavaPlugin {
         new Metrics(this, 5694);
         Bukkit.getConsoleSender().sendMessage(Color.translate("&eLoaded metrics!"));
         if (getSettingsFile().getBoolean("CheckForUpdates")) {
-            new UpdateChecker(this, 52072).getLatestVersion(version -> {
-                if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
-                    Bukkit.getConsoleSender().sendMessage(Color.translate("&aPunishmentGUI is up to date!"));
-                } else {
-                    PluginDescriptionFile pdf = this.getDescription();
-                    Bukkit.getConsoleSender().sendMessage(Color.translate("&7*********************************************************************"));
-                    Bukkit.getConsoleSender().sendMessage(Color.translate("&cPunishmentGUI is outdated!"));
-                    Bukkit.getConsoleSender().sendMessage(Color.translate("Newest version: &e" + version));
-                    Bukkit.getConsoleSender().sendMessage(Color.translate("Your version: &c" + pdf.getVersion()));
-                    Bukkit.getConsoleSender().sendMessage(Color.translate("Please Update Here: https://www.spigotmc.org/resources/52072"));
-                    Bukkit.getConsoleSender().sendMessage(Color.translate("&7*********************************************************************"));
-                }
-            });
+            updateCheck(Bukkit.getConsoleSender(), true);
         }
         Bukkit.getConsoleSender().sendMessage(Color.translate("&aPunishmentGUI Loaded!"));
         Bukkit.getScheduler().runTaskTimerAsynchronously(this, new MenuUpdate(), 20L, 20L);
@@ -112,6 +107,54 @@ public final class PunishGUI extends JavaPlugin {
                     aquaMenu.update(player);
                 }
             });
+        }
+    }
+
+    public void updateCheck(CommandSender sender, boolean console) {
+        try {
+            String urlString = "https://updatecheck.bghddevelopment.com";
+            URL url = new URL(urlString);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String input;
+            StringBuffer response = new StringBuffer();
+            while ((input = reader.readLine()) != null) {
+                response.append(input);
+            }
+            reader.close();
+            JsonObject object = new JsonParser().parse(response.toString()).getAsJsonObject();
+
+            if (object.has("plugins")) {
+                JsonObject plugins = object.get("plugins").getAsJsonObject();
+                JsonObject info = plugins.get("PunishmentGUI").getAsJsonObject();
+                String version = info.get("version").getAsString();
+                if (version.equals(getDescription().getVersion())) {
+                    if (console) {
+                        sender.sendMessage(Color.translate("&aPunishmentGUI is on the latest version."));
+                    }
+                } else {
+                    sender.sendMessage(Color.translate(""));
+                    sender.sendMessage(Color.translate(""));
+                    sender.sendMessage(Color.translate("&cYour PunishmentGUI version is out of date!"));
+                    sender.sendMessage(Color.translate("&cWe recommend updating ASAP!"));
+                    sender.sendMessage(Color.translate(""));
+                    sender.sendMessage(Color.translate("&cYour Version: &e" + getDescription().getVersion()));
+                    sender.sendMessage(Color.translate("&aNewest Version: &e" + version));
+                    sender.sendMessage(Color.translate(""));
+                    sender.sendMessage(Color.translate(""));
+                    return;
+                }
+                return;
+            } else {
+                sender.sendMessage(Color.translate("&cWrong response from update API, contact plugin developer!"));
+                return;
+            }
+        } catch (
+                Exception ex) {
+            sender.sendMessage(Color.translate("&cFailed to get updater check. (" + ex.getMessage() + ")"));
+            return;
         }
     }
 
