@@ -76,6 +76,7 @@ public class ConfigItem {
             this.closeMenu = true;
         }
     }
+
     public ItemStack toItemStack() {
         if (headDatabase) {
             HeadDatabaseAPI api = new HeadDatabaseAPI();
@@ -83,7 +84,7 @@ public class ConfigItem {
             if (glow) {
                 if (Bukkit.getVersion().contains("1.7")) {
                     item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
+                } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17") || Bukkit.getVersion().contains("1.18")) {
                     item.addEnchant(PunishGUI.getInstance().getGlow(), 1);
                 } else {
                     item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
@@ -101,7 +102,7 @@ public class ConfigItem {
             if (glow) {
                 if (Bukkit.getVersion().contains("1.7")) {
                     item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
+                } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17") || Bukkit.getVersion().contains("1.18")) {
                     item.addEnchant(PunishGUI.getInstance().getGlow(), 1);
                 } else {
                     item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
@@ -118,7 +119,7 @@ public class ConfigItem {
             if (glow) {
                 if (Bukkit.getVersion().contains("1.7")) {
                     item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
+                } else if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17") || Bukkit.getVersion().contains("1.18")) {
                     item.addEnchant(PunishGUI.getInstance().getGlow(), 1);
                 } else {
                     item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
