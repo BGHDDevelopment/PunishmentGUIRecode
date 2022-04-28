@@ -11,6 +11,8 @@ public enum Language {
 
     PUNISH_USAGE("PUNISH.USAGE", "&cUse Like: /punish <target>"),
     PUNISH_NAME_ERROR("PUNISH.NAME-ERROR", "&cThat player name is invalid!"),
+    CONSOLE_ERROR("PUNISH.COMMAND-CONSOLE", "&cConsole cannot use this command!"),
+    RELOADED("PUNISH.RELOAD", "&aPlugin files have been reloaded!"),
 
     END("", "");
 

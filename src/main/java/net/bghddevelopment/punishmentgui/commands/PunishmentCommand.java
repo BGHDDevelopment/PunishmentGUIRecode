@@ -1,31 +1,27 @@
 package net.bghddevelopment.punishmentgui.commands;
 
+import co.aikar.commands.BaseCommand;
+import co.aikar.commands.annotation.*;
+import net.bghddevelopment.punishmentgui.PunishGUI;
 import net.bghddevelopment.punishmentgui.language.Language;
 import net.bghddevelopment.punishmentgui.menu.handler.CustomMenu;
-import net.bghddevelopment.punishmentgui.utils.Color;
 import net.bghddevelopment.punishmentgui.utils.Tasks;
 import net.bghddevelopment.punishmentgui.utils.Utilities;
-import net.bghddevelopment.punishmentgui.utils.command.BaseCommand;
-import net.bghddevelopment.punishmentgui.utils.command.Command;
-import net.bghddevelopment.punishmentgui.utils.command.CommandArgs;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class PunishCommand extends BaseCommand {
+@CommandAlias("punish|punishment")
+@CommandPermission("punish.use")
+@Description("Opens the punish menu for specified player.")
+@Conditions("noconsole")
+public class PunishmentCommand extends BaseCommand {
 
+    @Dependency
+    private PunishGUI plugin;
 
-    @Command(name = "punish", aliases = "p", permission = "punish.use")
-    public void onCommand(CommandArgs command) {
-        Player player = command.getPlayer();
-        String[] args = command.getArgs();
-        if (!(command.getSender() instanceof Player)) {
-            command.getSender().sendMessage(Color.translate("This can only be used in-game!"));
-            return;
-        }
-        if (!player.hasPermission("punish.use")) {
-            return;
-        }
+    @Default
+    public void onDefault(CommandSender sender, String[] args) {
+        Player player = (Player) sender;
         if (args.length == 0 || args.length > 2) {
             player.sendMessage(plugin.getPlaceholderAPI().translate(player, Language.PUNISH_USAGE.toString()));
             return;
@@ -46,7 +42,7 @@ public class PunishCommand extends BaseCommand {
                 return;
             });
         } else {
-            Utilities.log("&c[MenuLog-1] &eThere is no menu with name &e&n" + plugin.getSettingsFile().getString("Command") + "&b &eto open for &b" + player.getName() + "&e. &c&oPlease check your configurations.");
+            Utilities.log("&cThere is no menu with name &e&n" + plugin.getSettingsFile().getString("Command") + "&b &eto open for &b" + player.getName() + "&e. &c&oPlease check your configurations.");
             return;
         }
         player.updateInventory();

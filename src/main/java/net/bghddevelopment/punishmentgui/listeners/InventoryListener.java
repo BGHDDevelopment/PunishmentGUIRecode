@@ -8,15 +8,20 @@ package net.bghddevelopment.punishmentgui.listeners;
 import net.bghddevelopment.punishmentgui.PunishGUI;
 import net.bghddevelopment.punishmentgui.menu.menu.AquaMenu;
 import net.bghddevelopment.punishmentgui.menu.slots.Slot;
+import net.bghddevelopment.punishmentgui.utils.Manager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.*;
 
-public class InventoryListener implements Listener {
+public class InventoryListener extends Manager implements Listener {
 
     private PunishGUI plugin = PunishGUI.getInstance();
+
+    public InventoryListener(PunishGUI plugin) {
+        super(plugin);
+    }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void handleInventories(InventoryClickEvent event) {

@@ -86,7 +86,7 @@ public class CustomMenu {
                                 if (customMenu != null) {
                                     Tasks.run(plugin, () -> customMenu.getMenu().open(player));
                                 } else {
-                                    Utilities.log("&c[MenuLog-2] &eThere is no menu with name &e&n" + menu + "&b &eto open for &b" + player.getName() + "&e. &c&oPlease check your configurations.");
+                                    Utilities.log("&cThere is no menu with name &e&n" + menu + "&b &eto open for &b" + player.getName() + "&e. &c&oPlease check your configurations.");
                                 }
                             }
 

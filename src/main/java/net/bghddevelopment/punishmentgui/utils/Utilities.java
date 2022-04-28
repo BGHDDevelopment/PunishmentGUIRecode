@@ -23,7 +23,7 @@ public class Utilities {
     }
 
     public static void log(String message) {
-        Bukkit.getConsoleSender().sendMessage(net.bghddevelopment.punishmentgui.utils.Color.translate(message));
+        Bukkit.getConsoleSender().sendMessage(net.bghddevelopment.punishmentgui.utils.Color.translate("[PunishGUI] " + message));
     }
 
     public static Material getMaterial(String source) {
