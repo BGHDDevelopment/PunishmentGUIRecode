@@ -21,6 +21,7 @@ menus:
       ClientModOffensesItem:
         name: "&a&lClient Mod Offenses"
         material: "IRON_SWORD"
+        amount: 1
         durability: 0
         slot: 14
         message:
@@ -39,6 +40,7 @@ menus:
       GeneralOffensesItem:
         name: "&a&lGeneral Offenses"
         material: "HOPPER"
+        amount: 1
         durability: 0
         slot: 12
         message:
@@ -57,6 +59,7 @@ menus:
       ChatOffensesItem:
         name: "&a&lChat Offenses"
         material: "BOOK_AND_QUILL"
+        amount: 1
         durability: 0
         slot: 10
         message:
@@ -75,6 +78,7 @@ menus:
       WarningItem:
         name: "&a&lWarnings"
         material: "ANVIL"
+        amount: 1
         durability: 0
         slot: 43
         message:
@@ -96,6 +100,7 @@ menus:
       PermanentMuteItem:
         name: "&a&lPermanent Mute"
         material: "PAPER"
+        amount: 1
         durability: 0
         slot: 25
         message:
@@ -119,6 +124,7 @@ menus:
       Severity1MuteItem:
         name: "&a&lSeverity 1"
         material: "INK_SACK"
+        amount: 1
         durability: 0
         slot: 19
         message:
@@ -148,6 +154,7 @@ menus:
       Severity2MuteItem:
         name: "&a&lSeverity 2"
         material: "INK_SACK"
+        amount: 1
         durability: 0
         slot: 28
         message:
@@ -178,6 +185,7 @@ menus:
       Severity3MuteItem:
         name: "&a&lSeverity 3"
         material: "INK_SACK"
+        amount: 1
         durability: 0
         slot: 37
         message:
@@ -202,6 +210,7 @@ menus:
       PermanentBanItem:
         name: "&a&lPermanent Ban"
         material: "REDSTONE_BLOCK"
+        amount: 1
         durability: 0
         slot: 34
         message:
@@ -222,6 +231,7 @@ menus:
       Severity1GeneralBanItem:
         name: "&a&lSeverity 1"
         material: "INK_SACK"
+        amount: 1
         durability: 0
         slot: 21
         message:
@@ -248,6 +258,7 @@ menus:
       Severity1ClientBanItem:
         name: "&a&lSeverity 1"
         material: "INK_SACK"
+        amount: 1
         durability: 0
         slot: 23
         message:
@@ -269,6 +280,7 @@ menus:
       Severity2ClientBanItem:
         name: "&a&lSeverity 2"
         material: "INK_SACK"
+        amount: 1
         durability: 0
         slot: 32
         message:
@@ -293,6 +305,7 @@ menus:
       Severity3ClientBanItem:
         name: "&a&lSeverity 3"
         material: "INK_SACK"
+        amount: 1
         durability: 0
         slot: 41
         message:
@@ -318,6 +331,7 @@ menus:
       IPMuteItem:
         name: "&a&lIP Mute"
         material: "TNT"
+        amount: 1
         durability: 0
         slot: 7
         message:
@@ -336,6 +350,7 @@ menus:
           - ' '
       IPBanItem:
         name: "&a&lIP BAN"
+        amount: 1
         material: "TNT"
         durability: 0
         slot: 7

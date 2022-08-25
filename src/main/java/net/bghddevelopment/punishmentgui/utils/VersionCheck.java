@@ -38,4 +38,11 @@ public class VersionCheck {
         }
         return false;
     }
+
+    public static boolean isOnePointSeven() {
+        if (Bukkit.getVersion().contains("1.7")) {
+            return true;
+        }
+        return false;
+    }
 }

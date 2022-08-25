@@ -55,7 +55,7 @@ public class CoreHandler extends Manager {
                     this.plugin.getSettingsFile().getString("menus." + key + ".menu-title"),
                     this.plugin.getSettingsFile().getInt("menus." + key + ".menu-size"),
                     items, fill, glassData, Utilities.getMaterial(this.plugin
-                    .getSettingsFile().getString("menus." + key + ".fill-menu.material"))));
+                    .getSettingsFile().getString("menus." + key + ".fill-menu.material")).parseMaterial()));
         });
     }
 
