@@ -20,6 +20,7 @@ public class PunishmentCommand extends BaseCommand {
     private PunishGUI plugin;
 
     @Default
+    @CommandCompletion("@players")
     public void onDefault(CommandSender sender, String[] args) {
         Player player = (Player) sender;
         if (args.length == 0 || args.length > 2) {
