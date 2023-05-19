@@ -15,8 +15,12 @@ menus:
     menu-size: 54
     fill-menu:
       enabled: true
-      fill-data: 15
-      material: "STAINED_GLASS_PANE"
+      item:
+        name: " "
+        material: "STAINED_GLASS_PANE"
+        amount: 1
+        durability: 0
+        lore: []
     items:
       ClientModOffensesItem:
         name: "&a&lClient Mod Offenses"

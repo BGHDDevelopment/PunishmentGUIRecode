@@ -41,21 +41,22 @@ public class CoreHandler extends Manager {
             ConfigurationSection itemSection = this.plugin.getSettingsFile().getConfigurationSection("menus." + key + ".items");
 
             if (itemSection != null) {
-                itemSection.getKeys(false).forEach(item -> {
-                    items.add(new ConfigItem(this.plugin.getSettingsFile(), "menus." + key + ".items." + item));
-                });
+                itemSection.getKeys(false).forEach(item -> items.add(new ConfigItem(this.plugin.getSettingsFile(), "menus." + key + ".items." + item)));
             }
 
             String name = this.plugin.getSettingsFile().getString("menus." + key + ".name", "").toLowerCase();
 
             boolean fill = this.plugin.getSettingsFile().getBoolean("menus." + key + ".fill-menu.enabled", false);
-            int glassData = this.plugin.getSettingsFile().getInt("menus." + key + ".fill-menu.fill-data", 0);
+            ConfigurationSection fillSection = this.plugin.getSettingsFile().getConfigurationSection("menus." + key + ".fill-menu");
+            ConfigItem fillItem = null;
+            if(fillSection != null) {
+                fillItem = new ConfigItem(this.plugin.getSettingsFile(), "menus." + key + ".fill-menu.item");
+            }
 
             this.customMenuData.put(name, new CustomMenu(name,
                     this.plugin.getSettingsFile().getString("menus." + key + ".menu-title"),
                     this.plugin.getSettingsFile().getInt("menus." + key + ".menu-size"),
-                    items, fill, glassData, Utilities.getMaterial(this.plugin
-                    .getSettingsFile().getString("menus." + key + ".fill-menu.material")).parseMaterial()));
+                    items, fill, fillItem));
         });
     }
 
