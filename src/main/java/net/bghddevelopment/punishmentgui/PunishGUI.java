@@ -41,6 +41,7 @@ public final class PunishGUI extends JavaPlugin {
     private BannedManager bannedPlayersManager = BannedManager.getManager();
     private PlaceholderAPI placeholderAPI;
     private Glow glow;
+    private String Version = "1.1.7";
 
     public static PunishGUI getInstance() {
         return PunishGUI.instance;
@@ -147,7 +148,7 @@ public final class PunishGUI extends JavaPlugin {
                 JsonObject plugins = object.get("plugins").getAsJsonObject();
                 JsonObject info = plugins.get("PunishmentGUI").getAsJsonObject();
                 String version = info.get("version").getAsString();
-                if (version.equals(getDescription().getVersion())) {
+                if (version.equals(getVersion())) {
                     if (console) {
                         sender.sendMessage(Color.translate("&aPunishmentGUI is on the latest version."));
                     }
