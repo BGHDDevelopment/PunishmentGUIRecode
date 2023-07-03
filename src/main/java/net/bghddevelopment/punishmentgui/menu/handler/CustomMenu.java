@@ -52,10 +52,12 @@ public class CustomMenu {
 
                         configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName()
                                 .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
-                                .replace("{player}", plugin.getBannedManager().get(player.getUniqueId())))));
+                                .replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
+                                .replace("{executor}", player.getDisplayName()))));
                         for (String s : lore) {
                             lore_new.add(plugin.getCoreHandler().translate(player, s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
-                                    .replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))));
+                                    .replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
+                                    .replace("{executor}", player.getDisplayName())));
                         }
 
                         ItemStack item = configItem.toItemStack();
@@ -93,17 +95,20 @@ public class CustomMenu {
                                 for (String s : configItem.getCommand()) {
                                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
                                             .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
-                                            .replace("[Console]", ""));
+                                            .replace("[Console]", "")
+                                            .replace("{executor}", player.getDisplayName()));
                                 }
                             } else {
                                 for (String s : configItem.getCommand()) {
                                     if (s.contains("[Console]")) {
                                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
                                                 .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
-                                                .replace("[Console]", ""));
+                                                .replace("[Console]", "")
+                                                .replace("{executor}", player.getDisplayName()));
                                     } else {
                                         player.performCommand(s.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
-                                                .replace("{target}", plugin.getBannedManager().get(player.getUniqueId())));
+                                                .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
+                                                .replace("{executor}", player.getDisplayName()));
                                     }
                                 }
                             }
@@ -153,7 +158,7 @@ public class CustomMenu {
             }
 
             @Override
-            public String getName(Player player) {
+            public String getName( Player player) {
                 if (title.length() <= 32) {
                     return title.replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))
                             .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()));
