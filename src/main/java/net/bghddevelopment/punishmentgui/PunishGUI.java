@@ -14,9 +14,7 @@ import net.bghddevelopment.punishmentgui.menu.MenuManager;
 import net.bghddevelopment.punishmentgui.menu.handler.CoreHandler;
 import net.bghddevelopment.punishmentgui.menu.menu.AquaMenu;
 import net.bghddevelopment.punishmentgui.utils.*;
-import net.bghddevelopment.punishmentgui.utils.glow.Glow;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -40,7 +38,6 @@ public final class PunishGUI extends JavaPlugin {
     private List<Listener> listeners = new ArrayList<>();
     private BannedManager bannedPlayersManager = BannedManager.getManager();
     private PlaceholderAPI placeholderAPI;
-    private Glow glow;
     private String Version = "1.1.7";
 
     public static PunishGUI getInstance() {
@@ -59,11 +56,6 @@ public final class PunishGUI extends JavaPlugin {
         loadListeners();
         loadHandlers();
         this.coreHandler.setupCustomMenuData();
-        if(VersionCheck.isOnePointThirteenPlus()) {
-            this.glow = new Glow(NamespacedKey.minecraft("glow"));
-            this.glow.register();
-            Utilities.log("&aEnabled glow for Spigot 1.13+");
-        }
         Utilities.log("&aLoaded menus!");
         new Metrics(this, 5694);
         Utilities.log("&aLoaded metrics!");
