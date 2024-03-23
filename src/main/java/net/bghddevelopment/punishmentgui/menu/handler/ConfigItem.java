@@ -2,6 +2,7 @@ package net.bghddevelopment.punishmentgui.menu.handler;
 
 import ca.tweetzy.skulls.api.SkullsAPI;
 import ca.tweetzy.skulls.impl.Skull;
+import com.cryptomorin.xseries.SkullUtils;
 import com.cryptomorin.xseries.XMaterial;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
 
@@ -127,7 +129,11 @@ public class ConfigItem {
             item.setName(this.name);
             item.setLore(this.lore);
             item.setDurability(this.durability);
-            item.setSkullOwner(this.skullOwner);
+            ItemMeta itemMeta = item.toItemStack().getItemMeta();
+            if (itemMeta instanceof SkullMeta) {
+                itemMeta = SkullUtils.applySkin(itemMeta, this.skullOwner);
+                item.toItemStack().setItemMeta(itemMeta);
+            }
             return item.toItemStack();
         } else {
             ItemBuilder item = new ItemBuilder(this.material.parseMaterial());
@@ -144,7 +150,11 @@ public class ConfigItem {
             item.setName(this.name);
             item.setLore(this.lore);
             item.setDurability(this.durability);
-            item.setSkullOwner(this.skullOwner);
+            ItemMeta itemMeta = item.toItemStack().getItemMeta();
+            if (itemMeta instanceof SkullMeta) {
+                itemMeta = SkullUtils.applySkin(itemMeta, this.skullOwner);
+                item.toItemStack().setItemMeta(itemMeta);
+            }
             return item.toItemStack();
         }
     }
