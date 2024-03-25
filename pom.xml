@@ -13,7 +13,7 @@
 
     <description>PunishmentGUI which supports LiteBans, AdvancedBan and many others</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <url>https://bghddevelopment.com</url>
