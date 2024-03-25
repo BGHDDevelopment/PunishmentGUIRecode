@@ -40,7 +40,6 @@ public class PunishmentCommand extends BaseCommand {
             Tasks.run(plugin, () -> {
                 player.closeInventory();
                 customMenu.getMenu().open(player);
-                return;
             });
         } else {
             Utilities.log("&cThere is no menu with name &e&n" + plugin.getSettingsFile().getString("Command") + "&b &eto open for &b" + player.getName() + "&e. &c&oPlease check your configurations.");

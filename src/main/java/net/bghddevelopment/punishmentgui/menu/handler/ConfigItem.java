@@ -1,16 +1,14 @@
 package net.bghddevelopment.punishmentgui.menu.handler;
 
+import ca.tweetzy.skulls.Skulls;
 import ca.tweetzy.skulls.api.SkullsAPI;
-import ca.tweetzy.skulls.impl.Skull;
 import com.cryptomorin.xseries.SkullUtils;
 import com.cryptomorin.xseries.XMaterial;
 import lombok.Getter;
 import lombok.Setter;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
-import net.bghddevelopment.punishmentgui.PunishGUI;
 import net.bghddevelopment.punishmentgui.utils.*;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -87,75 +85,53 @@ public class ConfigItem {
     }
 
     public ItemStack toItemStack() {
+        ItemBuilder item;
         if (headDatabase) {
             HeadDatabaseAPI api = new HeadDatabaseAPI();
-            ItemBuilder item = new ItemBuilder(api.getItemHead(this.skullOwner));
-            if (glow) {
-                if (Bukkit.getVersion().contains("1.7")) {
-                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                } else {
-                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                    ItemMeta itemMeta = item.toItemStack().getItemMeta();
-                    itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    item.toItemStack().setItemMeta(itemMeta);
-                }
-            }
-            item.setName(this.name);
-            item.setLore(this.lore);
-            return item.toItemStack();
+            item = new ItemBuilder(api.getItemHead(this.skullOwner));
         } else if (skulls) {
-            Skull api = SkullsAPI.getSkull(Integer.parseInt(this.skullOwner));
-            ItemBuilder item = new ItemBuilder(api.getItemStack());
-            if (glow) {
-                if (Bukkit.getVersion().contains("1.7")) {
-                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                } else {
-                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                    ItemMeta itemMeta = item.toItemStack().getItemMeta();
-                    itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    item.toItemStack().setItemMeta(itemMeta);
-                }
-            }
-            item.setName(this.name);
-            item.setLore(this.lore);
-            return item.toItemStack();
+            SkullsAPI api = Skulls.getAPI();
+            ItemStack itemStack = api.getSkullItem(Integer.parseInt(this.skullOwner));
+            item = new ItemBuilder(itemStack);
         } else if (customData) {
-            ItemBuilder item = new ItemBuilder(this.material.parseMaterial(), amount);
+            item = new ItemBuilder(this.material.parseMaterial(), amount);
             if (VersionCheck.isOnePointFourteenPlus()) {
                 item.setCustomModelData(this.customModelData);
             } else {
                 Utilities.log("&cAn error occurred when trying to set custom model data. Make sure your only using custom model data when on 1.14+.");
             }
-            item.setName(this.name);
-            item.setLore(this.lore);
             item.setDurability(this.durability);
             ItemMeta itemMeta = item.toItemStack().getItemMeta();
             if (itemMeta instanceof SkullMeta) {
                 itemMeta = SkullUtils.applySkin(itemMeta, this.skullOwner);
                 item.toItemStack().setItemMeta(itemMeta);
             }
-            return item.toItemStack();
         } else {
-            ItemBuilder item = new ItemBuilder(this.material.parseMaterial());
-            if (glow) {
-                if (Bukkit.getVersion().contains("1.7")) {
-                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                } else {
-                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                    ItemMeta itemMeta = item.toItemStack().getItemMeta();
-                    itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                    item.toItemStack().setItemMeta(itemMeta);
-                }
-            }
-            item.setName(this.name);
-            item.setLore(this.lore);
+            item = new ItemBuilder(this.material.parseMaterial(), amount);
             item.setDurability(this.durability);
             ItemMeta itemMeta = item.toItemStack().getItemMeta();
             if (itemMeta instanceof SkullMeta) {
                 itemMeta = SkullUtils.applySkin(itemMeta, this.skullOwner);
                 item.toItemStack().setItemMeta(itemMeta);
             }
-            return item.toItemStack();
         }
+        if (glow) {
+            if (VersionCheck.isOnePointSeven()) {
+                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+            } else {
+                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+                ItemMeta itemMeta = item.toItemStack().getItemMeta();
+                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+                item.toItemStack().setItemMeta(itemMeta);
+            }
+        }
+        return commonConfig(item).toItemStack();
+    }
+
+    private ItemBuilder commonConfig(ItemBuilder item) {
+        item.setName(this.name);
+        item.setLore(this.lore);
+        return item;
     }
 }

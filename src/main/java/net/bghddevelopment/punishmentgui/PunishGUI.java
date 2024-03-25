@@ -38,7 +38,7 @@ public final class PunishGUI extends JavaPlugin {
     private List<Listener> listeners = new ArrayList<>();
     private BannedManager bannedPlayersManager = BannedManager.getManager();
     private PlaceholderAPI placeholderAPI;
-    private String Version = "1.1.8";
+    private String Version = "1.1.9";
 
     public static PunishGUI getInstance() {
         return PunishGUI.instance;
@@ -74,7 +74,6 @@ public final class PunishGUI extends JavaPlugin {
             if (!issuer.isPlayer()) {
                 throw new ConditionFailedException(Language.CONSOLE_ERROR.toString());
             }
-            return;
         });
         manager.registerCommand(new PunishmentCommand());
         manager.registerCommand(new PunishmentGUIReloadCommand());
@@ -105,7 +104,9 @@ public final class PunishGUI extends JavaPlugin {
         this.languageFile.save();
     }
 
-    public BannedManager getBannedManager() { return this.bannedPlayersManager; }
+    public BannedManager getBannedManager() {
+        return this.bannedPlayersManager;
+    }
 
     private class MenuUpdate implements Runnable {
 
