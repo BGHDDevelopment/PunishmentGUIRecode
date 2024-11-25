@@ -2,13 +2,14 @@ package net.bghddevelopment.punishmentgui.menu.handler;
 
 import ca.tweetzy.skulls.Skulls;
 import ca.tweetzy.skulls.api.SkullsAPI;
-import com.cryptomorin.xseries.SkullUtils;
+import com.cryptomorin.xseries.XEnchantment;
 import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.profiles.builder.XSkull;
+import com.cryptomorin.xseries.profiles.objects.Profileable;
 import lombok.Getter;
 import lombok.Setter;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import net.bghddevelopment.punishmentgui.utils.*;
-import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -16,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -98,36 +100,52 @@ public class ConfigItem {
             if (VersionCheck.isOnePointFourteenPlus()) {
                 item.setCustomModelData(this.customModelData);
             } else {
-                Utilities.log("&cAn error occurred when trying to set custom model data. Make sure your only using custom model data when on 1.14+.");
+                Utilities.log("&cAn error occurred when trying to set custom model data. Make sure you're only using custom model data when on 1.14+.");
             }
             item.setDurability(this.durability);
             ItemMeta itemMeta = item.toItemStack().getItemMeta();
             if (itemMeta instanceof SkullMeta) {
-                itemMeta = SkullUtils.applySkin(itemMeta, this.skullOwner);
-                item.toItemStack().setItemMeta(itemMeta);
+                SkullMeta skullMeta = (SkullMeta) itemMeta;
+                updateSkullMeta(skullMeta, skullOwner);
+                item.toItemStack().setItemMeta(skullMeta);
             }
         } else {
             item = new ItemBuilder(this.material.parseMaterial(), amount);
             item.setDurability(this.durability);
             ItemMeta itemMeta = item.toItemStack().getItemMeta();
             if (itemMeta instanceof SkullMeta) {
-                itemMeta = SkullUtils.applySkin(itemMeta, this.skullOwner);
-                item.toItemStack().setItemMeta(itemMeta);
+                SkullMeta skullMeta = (SkullMeta) itemMeta;
+                updateSkullMeta(skullMeta, skullOwner);
+                item.toItemStack().setItemMeta(skullMeta);
             }
         }
         if (glow) {
-            if (VersionCheck.isOnePointSeven()) {
-                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-            } else {
-                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                ItemMeta itemMeta = item.toItemStack().getItemMeta();
-                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-                item.toItemStack().setItemMeta(itemMeta);
-            }
+            item.addEnchant(XEnchantment.POWER.getEnchant(), 1);
+            ItemMeta itemMeta = item.toItemStack().getItemMeta();
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            item.toItemStack().setItemMeta(itemMeta);
         }
         return commonConfig(item).toItemStack();
     }
+
+    public void updateSkullMeta(SkullMeta skullMeta, String owner) {
+        Profileable profileable;
+
+        try {
+            UUID uuid = UUID.fromString(owner);
+            profileable = Profileable.of(uuid);
+        } catch (IllegalArgumentException e) {
+            profileable = Profileable.username(owner);
+        }
+
+        // Apply the profile to the SkullMeta
+        skullMeta = (SkullMeta) XSkull.of(skullMeta).profile(profileable).apply();
+
+        // Set the modified SkullMeta back to the original object
+        skullMeta.setOwner(owner);
+    }
+
 
     private ItemBuilder commonConfig(ItemBuilder item) {
         item.setName(this.name);
