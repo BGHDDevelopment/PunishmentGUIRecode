@@ -6,6 +6,7 @@ import net.bghddevelopment.punishmentgui.PunishGUI;
 import net.bghddevelopment.punishmentgui.menu.slots.Slot;
 import net.bghddevelopment.punishmentgui.utils.Color;
 import net.bghddevelopment.punishmentgui.utils.Tasks;
+import net.bghddevelopment.punishmentgui.utils.VersionCheck;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
