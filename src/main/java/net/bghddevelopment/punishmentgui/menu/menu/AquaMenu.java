@@ -39,7 +39,9 @@ public abstract class AquaMenu {
         this.slots = this.getSlots(player);
         String title = this.getName(player);
 
-        if (title.length() > 32) title = title.substring(0, 32);
+        if(!VersionCheck.isOnePointThirteenPlus()){
+            if (title.length() > 32) title = title.substring(0, 32);
+        }
         title = Color.translate(title);
 
         if (player.getOpenInventory() != null) {
@@ -68,7 +70,9 @@ public abstract class AquaMenu {
         this.slots = this.getSlots(player);
         String title = this.getName(player);
 
-        if (title.length() > 32) title = title.substring(0, 32);
+        if(!VersionCheck.isOnePointThirteenPlus()){
+            if (title.length() > 32) title = title.substring(0, 32);
+        }
         title = Color.translate(title);
 
         boolean passed = false;
