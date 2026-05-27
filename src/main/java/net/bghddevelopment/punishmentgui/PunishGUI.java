@@ -38,7 +38,7 @@ public final class PunishGUI extends JavaPlugin {
     private List<Listener> listeners = new ArrayList<>();
     private BannedManager bannedPlayersManager = BannedManager.getManager();
     private PlaceholderAPI placeholderAPI;
-    private String Version = "1.1.12";
+    private String Version = "1.1.13";
 
     public static PunishGUI getInstance() {
         return PunishGUI.instance;
